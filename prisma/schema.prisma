@@ -16,18 +16,18 @@ model Custumer {
 
 model CurrentAccount {
   id          Int           @id @default(autoincrement())
-  total       Float?         @default(0.00)
-  createdAt   DateTime?      @default(now())
-  custumerId  Int
-  custumer    Custumer      @relation(fields: [custumerId], references: [id])
+  total       Float?        @default(0.00)
+  createdAt   DateTime?     @default(now())
+  custumerId  Int?
+  custumer    Custumer?     @relation(fields: [custumerId], references: [id])
   transaction Transaction[]
 }
 
 model Transaction {
   id               Int            @id @default(autoincrement())
-  createdAt        DateTime       @default(now())
-  value            Float
-  type             String
+  createdAt        DateTime?      @default(now())
+  value            Float?
+  type             String?
   currentAccountId Int
   currentAccount   CurrentAccount @relation(fields: [currentAccountId], references: [id])
 }
