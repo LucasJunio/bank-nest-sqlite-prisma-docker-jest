@@ -1,4 +1,4 @@
-import { forwardRef, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, forwardRef, Inject, Injectable } from '@nestjs/common';
 import { transactionInput } from 'src/module/input/transaction/transaction.input';
 import { TransactionRepository } from 'src/module/repository/transaction/transaction.repository';
 import { transactionSchema } from 'src/module/schema/transaction/transaction.schema';
@@ -14,9 +14,10 @@ export class TransactionService {
 
   public async create(params: transactionInput): Promise<transactionSchema> {
     const { value, currentAccountId } = params;
+    if (value === 0) throw new BadRequestException('Cannot make a transaction with value equal zero (0).');
     const type = this.typeTransaction(value);
     let { total } = await this.currentAccountService.findOne(currentAccountId);
-    await this.currentAccountService.update({ total: total + value });
+    await this.currentAccountService.update({ id: currentAccountId, total: total + value });
     return await this.transactionRepository.create({ type, ...params });
   }
 
@@ -25,6 +26,7 @@ export class TransactionService {
   }
 
   private typeTransaction(value: number): string {
-    return value > 0 ? 'CREDIT' : 'DEBIT';
+    if (value > 0) return 'CREDIT';
+    if (value < 0) return 'DEBIT';
   }
 }

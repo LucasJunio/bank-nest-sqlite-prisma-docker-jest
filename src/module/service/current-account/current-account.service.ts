@@ -1,4 +1,4 @@
-import { forwardRef, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, forwardRef, Inject, Injectable } from '@nestjs/common';
 import { currentAccountInput } from '../../input/current-account/current-account.input';
 import { CurrentAccountRepository } from '../../repository/current-account/current-account.repository';
 import { basicInfoSchema, currentAccountSchema } from '../../schema/current-account/current-account.schema';
@@ -17,10 +17,14 @@ export class CurrentAccountService {
   public async create(params: currentAccountInput): Promise<currentAccountSchema> {
     const data = this.checkInitialCredit(params);
     const { id, createdAt, custumerId } = await this.currentAccountRepository.create(data);
-    const { value: total } = await this.transactionService.create({
-      currentAccountId: id,
-      value: params.initialCredit,
-    });
+    const { value: total } =
+      params.initialCredit !== 0
+        ? await this.transactionService.create({
+            currentAccountId: id,
+            value: params.initialCredit,
+          })
+        : { value: 0 };
+
     return { id, total, custumerId, createdAt };
   }
 
@@ -33,18 +37,15 @@ export class CurrentAccountService {
   }
 
   public async basicInfo(accountId: number): Promise<basicInfoSchema> {
-    // const { total: balance, custumerId } = this.findOne(accountId);
-    // const { name, surname } = this.custumerService.findOne(custumerId);
-    // const transactions = this.transactionService.findAll(accountId);
-    // return { name, surname, balance, transactions };
-    return;
+    const { total: balance, custumerId } = await this.findOne(accountId);
+    const { name, surname } = await this.custumerService.findOne(custumerId);
+    const transactions = await this.transactionService.findAll(accountId);
+    return { name, surname, balance, transactions };
   }
 
   private checkInitialCredit(params: currentAccountInput): currentAccountInput {
     const { initialCredit, ...data } = params;
-    // TODO: throw error for negative initialCredit
-    if (initialCredit < 0) {
-    }
+    if (initialCredit < 0) throw new BadRequestException('Cannot create a account with initial credit equal zero (0).');
     return data;
   }
 }
