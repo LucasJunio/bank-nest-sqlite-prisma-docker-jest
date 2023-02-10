@@ -2,9 +2,9 @@ import { BadRequestException, forwardRef, Inject, Injectable } from '@nestjs/com
 import { currentAccountInput } from '../../input/current-account/current-account.input';
 import { CurrentAccountRepository } from '../../repository/current-account/current-account.repository';
 import { basicInfoSchema, currentAccountSchema } from '../../schema/current-account/current-account.schema';
+import { createAccountValidation } from '../../validators/current-account';
 import { CustumerService } from '../custumer/custumer.service';
 import { TransactionService } from '../transaction/transaction.service';
-
 @Injectable()
 export class CurrentAccountService {
   constructor(
@@ -15,6 +15,8 @@ export class CurrentAccountService {
   ) {}
 
   public async create(params: currentAccountInput): Promise<currentAccountSchema> {
+    const { error } = await createAccountValidation.validate(params);
+    if (error) throw new BadRequestException(error.message);
     const data = this.checkInitialCredit(params);
     const { id, createdAt, custumerId } = await this.currentAccountRepository.create(data);
     const { value: total } =
