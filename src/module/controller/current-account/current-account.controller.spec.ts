@@ -1,27 +1,39 @@
+import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { CurrentAccountService } from 'src/module/service/current-account/current-account.service';
-import { CurrentAccountController } from './current-account.controller';
+import { AppModule } from 'src/app.module';
+import * as request from 'supertest';
 
-describe('CurrentAccountController', () => {
-  let currentAccountController: CurrentAccountController;
-  let currentAccountService: CurrentAccountService;
+describe('currentAccount', () => {
+  let app: INestApplication;
 
   beforeEach(async () => {
-    const app: TestingModule = await Test.createTestingModule({
-      controllers: [CurrentAccountController],
-      providers: [CurrentAccountService],
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
     }).compile();
 
-    currentAccountService = app.get<CurrentAccountService>(CurrentAccountService);
-    currentAccountController = app.get<CurrentAccountController>(CurrentAccountController);
+    app = moduleFixture.createNestApplication();
+    await app.init();
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', async () => {
-      const response = await fetch('http://localhost:3000/current-account/basic-info/23');
-      const responseBody = await response.json();
+  // unit test
 
-      expect(response.status).toBe(200);
-    });
+  // e2e
+  it('/current-account (POST)', async () => {
+    return await request(app.getHttpServer())
+      .post('/current-account')
+      .set('Accept', 'application/json')
+      .send({
+        custumerId: 1,
+        initialCredit: 25,
+      })
+      .expect(201);
+  });
+
+  it('/current-account/basic-info/:accountId (GET)', () => {
+    return request(app.getHttpServer()).get('/current-account/basic-info/23').expect(200);
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 });

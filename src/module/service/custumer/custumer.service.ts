@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CustumerRepository } from 'src/module/repository/custumer/custumer.repository';
 import { custumerSchema } from 'src/module/schema/custumer/custumer.schema';
+import { CustumerRepository } from '../../repository/custumer/custumer.repository';
 
 @Injectable()
 export class CustumerService {

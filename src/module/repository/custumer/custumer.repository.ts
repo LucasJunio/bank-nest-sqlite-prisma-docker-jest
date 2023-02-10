@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { custumerSchema } from 'src/module/schema/custumer/custumer.schema';
+import { custumerSchema } from '../../schema/custumer/custumer.schema';
 
 const prisma = new PrismaClient();
 

@@ -15,7 +15,7 @@ export class CurrentAccountService {
   ) {}
 
   public async create(params: currentAccountInput): Promise<currentAccountSchema> {
-    const { error } = await createAccountValidation.validate(params);
+    const { error } = createAccountValidation.validate(params);
     if (error) throw new BadRequestException(error.message);
     const data = this.checkInitialCredit(params);
     const { id, createdAt, custumerId } = await this.currentAccountRepository.create(data);
