@@ -66,10 +66,10 @@ $ cp base.env .env
 $ docker build -t bank . 
 
 # Run tests
-docker run -e CI=true bank npm run test 
+$ docker run -e CI=true bank npm run test 
 
 # Build the container docker
-docker run -p 3000:3000 bank 
+$ docker run -p 3000:3000 bank 
 
 # Access SWAGGER documentation in:
 http://localhost:3000/api 
