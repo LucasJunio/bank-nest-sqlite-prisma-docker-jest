@@ -78,8 +78,6 @@ http://localhost:3000/api
 
 ```
 
-The project can be run almost 100% locally, but you first must have:
-
 #  3. Recommended Extensions
 
 You can check out a list of recommended extensions in the file `.vscode/extensions.json`, or by opening the "Extensions" Tab in the "Recommended" pane.
