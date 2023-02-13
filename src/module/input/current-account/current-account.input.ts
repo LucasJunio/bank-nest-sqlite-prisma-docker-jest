@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class currentAccountInput {
-  id: number;
+  id?: number;
 
   @ApiProperty({ example: '1' })
   custumerId?: number;

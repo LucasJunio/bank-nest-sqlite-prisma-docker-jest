@@ -1,4 +1,5 @@
 import { BadRequestException, forwardRef, Inject, Injectable } from '@nestjs/common';
+import { transactionSchema } from 'src/module/schema/transaction/transaction.schema';
 import { currentAccountInput } from '../../input/current-account/current-account.input';
 import { CurrentAccountRepository } from '../../repository/current-account/current-account.repository';
 import { basicInfoSchema, currentAccountSchema } from '../../schema/current-account/current-account.schema';
@@ -19,14 +20,7 @@ export class CurrentAccountService {
     if (error) throw new BadRequestException(error.message);
     const data = this.checkInitialCredit(params);
     const { id, createdAt, custumerId } = await this.currentAccountRepository.create(data);
-    const { value: total } =
-      params.initialCredit !== 0
-        ? await this.transactionService.create({
-            currentAccountId: id,
-            value: params.initialCredit,
-          })
-        : { value: 0 };
-
+    const { value: total } = await this.registerTransaction(params, id);
     return { id, total, custumerId, createdAt };
   }
 
@@ -49,5 +43,17 @@ export class CurrentAccountService {
     const { initialCredit, ...data } = params;
     if (initialCredit < 0) throw new BadRequestException('Cannot create a account with initial credit equal zero (0).');
     return data;
+  }
+
+  private async registerTransaction(
+    params: currentAccountInput,
+    id: number,
+  ): Promise<transactionSchema | { value: number }> {
+    return params.initialCredit > 0
+      ? await this.transactionService.create({
+          currentAccountId: id,
+          value: params.initialCredit,
+        })
+      : { value: 0 };
   }
 }
