@@ -29,7 +29,7 @@ Beyond is good to has an editor for to work with the code like [VSCode](https://
 
 # 1. Overview
 
-Bank is an API to open a new &quot;current account&quot; of already existing customers.
+Bank is an API to open a new &quot;current account&quot; of already existing customers, see diagram Entity relationship for documentation in ./docs/der-bank.png
 
 ## 1.1. Stack
 
