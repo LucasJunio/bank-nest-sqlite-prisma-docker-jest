@@ -60,18 +60,18 @@ $ git clone https://github.com/LucasJunio/bank
 $ cd bank
 
 # Copy base.env to .env
-$ cp base.env .env - copy base .env
+$ cp base.env .env 
 
 # Build the image docker
-$ docker build -t bank . - build docker image
+$ docker build -t bank . 
 
 # Run tests
-docker run -e CI=true bank npm run test - run tests
+docker run -e CI=true bank npm run test 
 
 # Build the container docker
-docker run -p 3000:3000 bank - run application
+docker run -p 3000:3000 bank 
 
-# Access documentation in:
+# Access SWAGGER documentation in:
 http://localhost:3000/api 
 
 # The aplication going to open in  port:3000 - access http://localhost:3000
