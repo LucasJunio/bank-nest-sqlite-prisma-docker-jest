@@ -1,0 +1,13 @@
+POST http://localhost:3000/current-account
+content-type: application/json
+{
+    "custumerId": 1,
+    "initialCredit": 10.51,
+    "total": 0
+}
+
+###
+
+# POST http://localhost:3000/basic-info/:accountId
+GET http://localhost:3000/current-account/basic-info/:32
+content-type: application/json

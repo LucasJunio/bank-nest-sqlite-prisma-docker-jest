@@ -17,7 +17,6 @@ Before you need install follow tools in your machine:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Docker](https://www.docker.com/resources/what-container).
 Beyond is good to has an editor for to work with the code like [VSCode](https://code.visualstudio.com/)
 
-
 # Summary
 
 - [1. Overview](#1-overview)
@@ -25,7 +24,14 @@ Beyond is good to has an editor for to work with the code like [VSCode](https://
   - [1.2. Auxiliary libs](#12-auxiliary-libs)
 - [2. How To Run](#2-🔬-how-to-run)
   - [2.1 Containers](#21-containers)
-- [3. Recommended Extensions](#3-recommended-extensions)
+  - [2.2 Local](#22-local)
+  - [2.3 Evaluating Signin and Private Route](#23-evaluating)
+  - [2.4 API Endpoints](#24-endpoints)
+- [3. Prisma Local Database](#3-prisma-database)
+- [4. How to create a new branch](#4-new-branch)
+  - [4.1 Commits](#41-commits)
+- [5. Software Architecture](#5-software-architecture)
+- [6. Recommended Extensions](#6-recommended-extensions)
 
 # 1. Overview
 
@@ -49,8 +55,6 @@ Bank is an API to open a new &quot;current account&quot; of already existing cus
 
 # 2. 🔬 How To Run
 
-## 2.1. Containers
-
 ```bash
 
 # Clone this repository
@@ -61,6 +65,12 @@ $ cd bank
 
 # Copy base.env to .env
 $ cp base.env .env 
+
+```
+
+## 2.1. Containers
+
+```bash
 
 # Build the image docker
 $ docker build -t bank . 
@@ -78,7 +88,98 @@ http://localhost:3000/api
 
 ```
 
-#  3. Recommended Extensions
+## 2.2. Local
+
+Run the development server local with &quot;yarn&quot;, &quot;npm&quot;, &quot;pnpm&quot; or manager package your preference:
+
+```bash
+
+# Create .env file
+$ cp base.env .env
+
+# Install dependencies
+$ yarn install
+
+# Generate the TypeScript code associated with your database models
+$ npx prisma generate
+
+# Building migrations
+$ npx prisma migrate dev
+
+# Building mock data
+$ npx prisma db seed
+
+# Run the project
+$ yarn start
+
+```
+
+The aplication going to open in port:3000 - access [http://localhost:3000](http://localhost:3000)
+
+### 2.3 Evaluating Signin and Private Route
+
+You can login by sending a POST request to the 
+
+### 2.4 API Endpoints
+
+- `POST /private-route`:
+
+
+# 3. Prisma Local Database
+
+You can see the local database Prisma Studio is up on http://localhost:5555.
+
+```bash
+
+# Running local database
+$ npx prisma studio
+
+```
+
+Result:
+
+![Prisma Local Database](.docs/gifs/prisma-database.gif)
+
+# 4. How to create a new branch
+
+Ever that's necessary to create a new branch feature, create by [main]branch, implement your development, merge this feature/branch to develop, when all it's ok, give a merge of this feature/branch to main[branch].
+
+Let's go to follow the git flow patterns to create a new branch, to more info browse in link below to learn more how to implement in simple way.
+
+Workflow gitflow: https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow
+
+```bash
+
+# Example creating a new branch
+$ git checkout -b feature/TASK-1
+
+```
+
+## 4.1. Commits
+
+For commit your changes, you can follow the suggestion to use conventional commits [https://www.conventionalcommits.org/en/v1.0.0/] for to improve your commit descriptions and help the understand of the team. Exist a extension in vscode that can help you with this mission.
+
+vscode extension id in .vscode/extensions.json:
+
+"recommendations": ["vivaxy.vscode-conventional-commits"]
+
+# 5. Software Architecture
+
+Main folder tree.
+
+C:.
+
+-  src
+-   ├───core
+-   └───module
+-       -├───controller
+-       -├───input
+-       -├───repository
+-       -├───schema
+-       -├───service
+-       -└───validators
+
+#  6. Recommended Extensions
 
 You can check out a list of recommended extensions in the file `.vscode/extensions.json`, or by opening the "Extensions" Tab in the "Recommended" pane.
 
