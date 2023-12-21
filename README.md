@@ -30,7 +30,8 @@ Beyond is good to has an editor for to work with the code like [VSCode](https://
 - [4. How to create a new branch](#4-new-branch)
   - [4.1 Commits](#41-commits)
 - [5. Software Architecture](#5-software-architecture)
-- [6. Recommended Extensions](#6-recommended-extensions)
+- [6. Documentation](#6-documentation)
+- [7. Recommended Extensions](#7-recommended-extensions)
 
 # 1. Overview
 
@@ -39,13 +40,6 @@ Bank is an API to open a new &quot;current account&quot; of already existing cus
 Result:
 
 ![API](.docs/gifs/main.gif)
-
-Diagram:
-
-see diagram entity relationship for documentation
-
-![Diagram](.docs/der-bank.png)
-
 
 ## 1.1. Stack
 
@@ -98,6 +92,8 @@ http://localhost:3000/api
 # The aplication going to open in  port:3000 - access http://localhost:3000
 
 ```
+
+![Diagram](.docs/gifs/docker.gif)
 
 ## 2.2. Local
 
@@ -208,15 +204,23 @@ C:.
 
 - src
 - ├───core
-- └───module
--       ├───controller
--       ├───input
--       ├───repository
--       ├───schema
--       ├───service
--       └───validators
+- ├───modules
+- │ ├───controller
+- │ ├───inputs
+- │ ├───repository
+- │ ├───schema
+- │ ├───service
+- │ └───validators
 
-# 6. Recommended Extensions
+# 6. Documentation
+
+Diagram:
+
+see diagram entity relationship for documentation
+
+![Diagram](.docs/der-bank.png)
+
+# 7. Recommended Extensions
 
 You can check out a list of recommended extensions in the file `.vscode/extensions.json`, or by opening the "Extensions" Tab in the "Recommended" pane.
 
