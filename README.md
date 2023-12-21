@@ -126,13 +126,40 @@ $ yarn start
 
 The aplication going to open in port:3000 - access [http://localhost:3000](http://localhost:3000)
 
-### 2.3 Evaluating Signin and Private Route
+### 2.3 Evaluating Create New Account and Basic Info about new account
 
-You can login by sending a POST request to the
+
+You can login by sending a POST request to the `/api/v1/login` endpoint. Here's an example using cURL:
+
+```bash
+
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+  {
+  "custumerId": 1,
+  "initialCredit": 25.51
+  }
+}' \
+http://localhost:3000/current-account/
+
+```
+The response will be status code 201 created and informations about the new account.
+
+You can evaluate the basic info route by sending a GET request to the `http://localhost:3000/current-account/basic-info/:id` endpoint. Here's an example using cURL:
+
+```bash
+curl -X GET
+  -H "Content-Type: application/json" \
+http://localhost:3000/current-account/basic-info/:id
+```
+
+The response will be status code 200 success and informations about the account {:id}.
 
 ### 2.4 API Endpoints
 
-- `POST /private-route`:
+- `POST http://localhost:3000/current-account/`:
+- `GET  http://localhost:3000/current-account/basic-info/1`:
 
 # 3. Prisma Local Database
 
