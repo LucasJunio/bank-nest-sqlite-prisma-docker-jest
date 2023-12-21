@@ -44,12 +44,12 @@ Diagram:
 
 see diagram entity relationship for documentation
 
-![Diagram](./docs/der-bank.png)
+![Diagram](./docs/der-bank)
 
 ## 1.1. Stack
 
 - [Typescript](https://www.typescriptlang.org/.docs/handbook/typescript-in-5-minutes.html)
-- [Node](https://nodejs.org/en/about/) >= v16.13.1
+- [Node](https://nodejs.org/en/about/)
 - [NestJs](https://docs.nestjs.com/)
 - [Sqlite](https://www.sqlite.org/index.html)
 - [Prisma](https://www.prisma.io/)
