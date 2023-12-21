@@ -44,7 +44,8 @@ Diagram:
 
 see diagram entity relationship for documentation
 
-![Diagram](./docs/der-bank)
+![Diagram](.docs/der-bank.png)
+
 
 ## 1.1. Stack
 
