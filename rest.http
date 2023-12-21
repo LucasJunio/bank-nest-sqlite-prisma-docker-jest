@@ -1,13 +1,12 @@
-POST http://localhost:3000/current-account
+# You can access http://localhost:3000/api to see swagger documentation
+POST http://localhost:3000/current-account/ HTTP/1.1
 content-type: application/json
+
 {
-    "custumerId": 1,
-    "initialCredit": 10.51,
-    "total": 0
+  "custumerId": 1,
+  "initialCredit": 11.51
 }
 
 ###
-
-# POST http://localhost:3000/basic-info/:accountId
-GET http://localhost:3000/current-account/basic-info/:32
+GET http://localhost:3000/current-account/basic-info/1
 content-type: application/json

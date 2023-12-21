@@ -1,4 +1,3 @@
-
 <h1 align="center">
      🐙 <a href="#" alt=""> Node.js Test Bank</a>
 </h1>
@@ -35,7 +34,17 @@ Beyond is good to has an editor for to work with the code like [VSCode](https://
 
 # 1. Overview
 
-Bank is an API to open a new &quot;current account&quot; of already existing customers, see diagram entity relationship for documentation in ./docs/der-bank.png
+Bank is an API to open a new &quot;current account&quot; of already existing customers
+
+Result:
+
+![API](.docs/gifs/main.gif)
+
+Diagram:
+
+see diagram entity relationship for documentation
+
+![DIAGRAM](./docs/der-bank.png)
 
 ## 1.1. Stack
 
@@ -64,7 +73,7 @@ $ git clone https://github.com/LucasJunio/bank
 $ cd bank
 
 # Copy base.env to .env
-$ cp base.env .env 
+$ cp base.env .env
 
 ```
 
@@ -73,16 +82,16 @@ $ cp base.env .env
 ```bash
 
 # Build the image docker
-$ docker build -t bank . 
+$ docker build -t bank .
 
 # Run tests
-$ docker run -e CI=true bank npm run test 
+$ docker run -e CI=true bank npm run test
 
 # Build the container docker
-$ docker run -p 3000:3000 bank 
+$ docker run -p 3000:3000 bank
 
 # Access SWAGGER documentation in:
-http://localhost:3000/api 
+http://localhost:3000/api
 
 # The aplication going to open in  port:3000 - access http://localhost:3000
 
@@ -118,12 +127,11 @@ The aplication going to open in port:3000 - access [http://localhost:3000](http:
 
 ### 2.3 Evaluating Signin and Private Route
 
-You can login by sending a POST request to the 
+You can login by sending a POST request to the
 
 ### 2.4 API Endpoints
 
 - `POST /private-route`:
-
 
 # 3. Prisma Local Database
 
@@ -169,20 +177,19 @@ Main folder tree.
 
 C:.
 
--  src
--   ├───core
--   └───module
--       -├───controller
--       -├───input
--       -├───repository
--       -├───schema
--       -├───service
--       -└───validators
+- src
+- ├───core
+- └───module
+-       ├───controller
+-       ├───input
+-       ├───repository
+-       ├───schema
+-       ├───service
+-       └───validators
 
-#  6. Recommended Extensions
+# 6. Recommended Extensions
 
 You can check out a list of recommended extensions in the file `.vscode/extensions.json`, or by opening the "Extensions" Tab in the "Recommended" pane.
-
 
 ---
 
