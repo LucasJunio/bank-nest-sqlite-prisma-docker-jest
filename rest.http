@@ -4,9 +4,9 @@ content-type: application/json
 
 {
   "custumerId": 1,
-  "initialCredit": 11.51
+  "initialCredit": 25.51
 }
 
 ###
-GET http://localhost:3000/current-account/basic-info/1
+GET http://localhost:3000/current-account/basic-info/28
 content-type: application/json

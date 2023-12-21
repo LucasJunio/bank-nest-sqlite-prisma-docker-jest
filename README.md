@@ -44,7 +44,7 @@ Diagram:
 
 see diagram entity relationship for documentation
 
-![DIAGRAM](./docs/der-bank.png)
+![Diagram](./docs/der-bank.png)
 
 ## 1.1. Stack
 
@@ -61,6 +61,7 @@ see diagram entity relationship for documentation
 
 - [Joi](https://joi.dev)
 - [Prisma](https://www.prisma.io/)
+- [Swagger](https://swagger.io/)
 
 # 2. 🔬 How To Run
 
