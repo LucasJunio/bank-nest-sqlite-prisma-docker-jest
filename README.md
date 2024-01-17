@@ -126,7 +126,7 @@ The aplication going to open in port:3000 - access [http://localhost:3000](http:
 ### 2.3 Evaluating Create New Account and Basic Info about new account
 
 
-You can login by sending a POST request to the `/api/v1/login` endpoint. Here's an example using cURL:
+You can login by sending a POST request to the `/current-account/` endpoint. Here's an example using cURL:
 
 ```bash
 
